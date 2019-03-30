@@ -1,2 +1,0 @@
-# Election
-Blockchain Project
