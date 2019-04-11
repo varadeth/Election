@@ -145,6 +145,21 @@ window.App = {
       }
       $("#vote-box").html(box) // displays the "box" and replaces everything that was in it before
     })
+  },
+  addCandidates: function() {
+    VotingContract.setProvider(window.web3.currentProvider)
+    VotingContract.defaults({from: window.web3.eth.accounts[0],gas:6721975})
+    VotingContract.deployed().then(function(instance) {
+      instance.getNumOfCandidates().then(function(numberOfCandidates) {
+        var candidateName = document.getElementById('candidateName').value;
+        var party = document.getElementById('party').value;
+        instance.addCandidate(candidateName,party).then(function(result){
+          window.numOfCandidates += 1;
+          alert('Done');
+          window.location.href = "index.html";
+        })
+      })
+    })
   }
 }
 
