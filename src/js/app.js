@@ -1,6 +1,6 @@
 
 // import CSS. Webpack with deal with it
-import "../css/style.css"
+//import "../css/style.css"
 
 // Import libraries we need.
 import { default as Web3} from "web3"
@@ -68,6 +68,7 @@ window.App = {
     VotingContract.deployed().then(function(instance){
       $("#msg").html("")
       var number = $("#idinput").val()
+      console.log(number);
       var voteButton = $("#vote")
       var candidatebox = $("#candidatebox")
       instance.voted(number).then(function(voter){
