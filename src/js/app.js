@@ -1,6 +1,6 @@
 
 // import CSS. Webpack with deal with it
-//import "../css/style.css"
+import "../css/style.css"
 
 // Import libraries we need.
 import { default as Web3} from "web3"
@@ -13,9 +13,22 @@ var VotingContract = contract(votingArtifacts)
 
 window.App = {
   // called when web3 is set up
-  
+  calculateTime : function() {
+    var countDownDate = new Date("April 20, 2019 00:00:00").getTime();
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    if(distance < 0) {
+      alert('Election period expired. Cannot Vote....!!!\n Sorry');
+      var button = $("#countVotes")
+      button.show();
+    }
+    else {
+      App.check();
+    }
+  },
   start: function() { 
     // setting up contract providers and transaction defaults for ALL contract instances
+    console.log('tejas');
     VotingContract.setProvider(window.web3.currentProvider)
     VotingContract.defaults({from: window.web3.eth.accounts[0],gas:6721975})
 
@@ -68,7 +81,6 @@ window.App = {
     VotingContract.deployed().then(function(instance){
       $("#msg").html("")
       var number = $("#idinput").val()
-      console.log(number);
       var voteButton = $("#vote")
       var candidatebox = $("#candidatebox")
       instance.voted(number).then(function(voter){
@@ -114,8 +126,6 @@ window.App = {
     VotingContract.deployed().then(function(instance){
       instance.vote(uid,parseInt(candidateID)).then(function(result){
         $("#msg").html("<p>Voted</p>")
-        var button = $("#countVotes")
-        button.show()
         var voteButton = $("#vote")
         voteButton.hide()
         console.warn(result)

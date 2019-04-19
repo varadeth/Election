@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.5.0;
 // written for Solidity version 0.4.18 and above that doesnt break functionality
 
 contract Voting {
@@ -35,7 +35,7 @@ contract Voting {
         uint candidateID = numCandidates++;
         // Create new Candidate Struct with name and saves it to storage.
         candidates[candidateID] = Candidate(name,party,true);
-        AddedCandidate(candidateID);
+        emit AddedCandidate(candidateID);
     }
 
     function vote(bytes32 uid, uint candidateID) public {

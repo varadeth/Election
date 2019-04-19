@@ -6,7 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>E-Voting</title>
-
+    <script>
+        var countDownDate = new Date("April 20, 2019 00:00:00").getTime();
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+        // Get todays date and time
+        var now = new Date().getTime();
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Display the result in the element with id="demo"
+        document.getElementById("timeRemaning").innerHTML = days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          alert('Election period expired. Cannot Vote....!!!\n Sorry');
+          var button = $("#countVotes")
+          button.show();
+          clearInterval(x);
+          document.getElementById("timeRemaining").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+      
+    </script>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
     
@@ -22,18 +48,23 @@
       </div>
       <div class="row">
         <div class="col-md-4">
+          <p id="timeRemaning"></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
           <p>Add ID and click candidate to vote</p>
           <div class="input-group mb-3">
             <input type="text" class="form-control" id="idinput" placeholder="Enter ID">
           </div>
           <div id="candidatebox"></div>
-          <button class="btn btn-primary" id = "isEligible" onclick="App.check()">Check Eligibility</button><br>
+          <button class="btn btn-primary" id = "isEligible" onclick="App.calculateTime()">Check Eligibility</button><br>
           <button class="btn btn-primary" id = "vote" onclick="App.vote()">Vote</button><br>
           <div class="msg1"><p id = 'msg'></p></div>
         </div>
         <div class="col-md-6">
             <button class="btn btn-primary" id = "countVotes" onclick="App.findNumOfVotes()">Count Votes</button>
-            <div id="vote-box"></div>
+          <div id="vote-box"></div>
         </div>
       </div>
     </div>
