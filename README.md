@@ -15,3 +15,9 @@ npm install
 npm run dev
 ```
 
+##Run
+truffle develop - blockchain development environment
+truffle migrate - To deploy smart contract
+truffle migrate --reset - To change existing smart contract
+npm build
+npm run dev
