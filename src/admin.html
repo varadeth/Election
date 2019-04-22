@@ -9,12 +9,13 @@
         <script src="app.js"></script>
     </head>
     
-    <body style="background-image:url('/vote.jpg');text-align:center;margin-top:40vh;">
-        <form action="/addCandidate.html">
-            <button class="w3-button w3-green" type="submit">Add Candidates</button>
+    <body style="background-image:url('vote1.jpg');background-size:20% auto;background-repeat:no-repeat;background-position:center;text-align:center;">
+		<h1 style="margin-top:5vh;">Voting Admin</h1>
+        <form style="margin-top:60vh;" action="/addCandidate.html">
+            <button class="w3-button w3-green w3-hover-blue" type="submit">Add Candidates</button>
         </form>
-        <div class="col-md-6">
-            <button  class="w3-button w3-green" onclick="App.findNumOfVotes()">Show Result</button>
+        <div style="margin-top:5vh;" class="col-md-6">
+            <button class="w3-button w3-green w3-hover-blue" onclick="App.findNumOfVotes()">Show Result</button>
             <div id="vote-box"></div>
         </div>
     </body>
