@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Admin Page</title>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -8,12 +9,12 @@
         <script src="app.js"></script>
     </head>
     
-    <body>
+    <body style="background-image:url('/vote.jpg');text-align:center;margin-top:40vh;">
         <form action="/addCandidate.html">
-            <button type="submit">Add Candidates</button>
+            <button class="w3-button w3-green" type="submit">Add Candidates</button>
         </form>
         <div class="col-md-6">
-            <button onclick="App.findNumOfVotes()">Show Result</button>
+            <button  class="w3-button w3-green" onclick="App.findNumOfVotes()">Show Result</button>
             <div id="vote-box"></div>
         </div>
     </body>
