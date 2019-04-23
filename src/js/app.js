@@ -14,7 +14,7 @@ var VotingContract = contract(votingArtifacts)
 window.App = {
   // called when web3 is set up
   calculateTime : function() {
-    var countDownDate = new Date("April 20, 2019 00:00:00").getTime();
+    var countDownDate = new Date("April 25, 2019 00:00:00").getTime();
     var now = new Date().getTime();
     var distance = countDownDate - now;
     if(distance < 0) {
@@ -74,8 +74,30 @@ window.App = {
   },
 
   login: function() {
-    console.warn("Error")
-    window.location.href = "vote.html"
+    var xhttp = new XMLHttpRequest();
+    if(xhttp.readyState==0||xhttp.readyState==0) {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+      console.log(username+'\n'+password);
+      xhttp.open('POST','http://localhost:3000/login.html?username='+username+'&password='+password,true);
+      xhttp.onreadystatechange = function() {
+        if(this.readyState==4&&this.status==200) {
+          var response = xhttp.responseText;
+          if(response=='ERROR') {
+            console.log(response);
+            document.getElementById('logonFailedMessage').innerHTML = 'Incorrect Username/Password';
+          }
+          else if(response=='ADMIN'){
+            console.log('admin.html');
+            window.location.href='admin.html';
+          }
+          else {
+            window.location.href = 'vote.html';
+          }
+        }
+      }
+      xhttp.send();
+    }
   },
   check: function() {
     VotingContract.deployed().then(function(instance){

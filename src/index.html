@@ -3,26 +3,34 @@
 <head>
 	<title>E-Voting</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-</head>
-<body>
-	<form action="/vote.html" method="post">
-		<br>
-		<div class = "container" style="text-align: center;">
-			<h1 style="text-align: center;">Login</h1>
-			<div class="col-md-4" style="display: inline-block;">
-				<div class="input-group mb-3">
-					<input type="text"class="form-control" name="username" placeholder="Username">
-				</div>
-				<div class="input-group mb-3">
-					<input type="password" class="form-control" name="password" placeholder="Password">
-				</div>
-				<div class="input-group mb-3">
-					<button class ="btn btn-primary" type="submit">Login</button>
-				</div>
-			</div>
-		</div>
-	</form>
 	<script src="app.js"></script>
 	<script src="js/bootstrap.min.js"></script>
-</body>
+</head>
+
+<body>
+	<center style="margin-top:10vh"><h3><b>E-Voting</b></h3></center>
+	<div class="container">
+	  <div class="row">
+		<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+		  <div class="card card-signin my-5">
+			<div class="card-body">
+			  <h5 class="card-title text-center" id="logonFailedMessage"></h5>
+			  <h5 class="card-title text-center">Sign In</h5>
+			  <form class="form-signin" action="/vote.html" method="post"> 
+				<div class="form-label-group">
+				  <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+				</div>
+				<div class="form-label-group" style="margin-top:3vh">
+				  <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+				</div>
+				<button onclick="App.login()"  style="margin-top:3vh" class="btn btn-lg btn-primary btn-block text-uppercase" type="button">Log In</button>
+			  </form>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </body>
+
+
 </html>
