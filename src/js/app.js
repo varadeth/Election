@@ -14,7 +14,7 @@ var VotingContract = contract(votingArtifacts)
 window.App = {
   // called when web3 is set up
   calculateTime : function() {
-    var countDownDate = new Date("April 25, 2019 00:00:00").getTime();
+    var countDownDate = new Date("May 25, 2019 00:00:00").getTime();
     var now = new Date().getTime();
     var distance = countDownDate - now;
     if(distance < 0) {
@@ -69,6 +69,7 @@ window.App = {
         window.numOfCandidates = numOfCandidates 
       })
     }).catch(function(err){ 
+      console.log('2');
       console.error("ERROR! " + err.message)
     })
   },
@@ -79,7 +80,7 @@ window.App = {
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
       console.log(username+'\n'+password);
-      xhttp.open('POST','http://localhost:3000/login.html?username='+username+'&password='+password,true);
+      xhttp.open('POST','http://192.168.43.142:3000/login.html?username='+username+'&password='+password,true);
       xhttp.onreadystatechange = function() {
         if(this.readyState==4&&this.status==200) {
           var response = xhttp.responseText;
@@ -181,7 +182,8 @@ window.App = {
   },
   addCandidates: function() {
     VotingContract.setProvider(window.web3.currentProvider)
-    VotingContract.defaults({from: window.web3.eth.accounts[0],gas:6721975})
+
+    window.web3.eth.defaultAccount = '0x7063E6683c799dFEBAC0a75D95143640B50b785B';
     VotingContract.deployed().then(function(instance) {
       instance.getNumOfCandidates().then(function(numberOfCandidates) {
         var candidateName = document.getElementById('candidateName').value;
@@ -206,7 +208,7 @@ window.addEventListener("load", function() {
   } else {
     console.warn("No web3 detected. Falling back to http://localhost:9545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for deployment. More info here: http://truffleframework.com/tutorials/truffle-and-metamask")
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:9545"))
+    window.web3 = new Web3(new Web3.providers.HttpProvider("http://192.168.43.142:7545"))
   }
   // initializing the App
   window.App.start()

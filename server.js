@@ -29,6 +29,7 @@ app.post('/login.html',function(req,res) {
 	console.log(req.query);
 	var user_name = req.query.username;
 	var pass_word = req.query.password;
+	console.log(user_name);
 	MongoClient.connect(url,function(err,db) {
 		if(err) throw err;
 		var dbo = db.db("E-Voting");
